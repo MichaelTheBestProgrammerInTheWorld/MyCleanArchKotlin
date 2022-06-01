@@ -24,8 +24,6 @@ import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
 import com.fernandocejas.sample.core.extension.empty
-import com.fernandocejas.sample.features.login.Authenticator
-import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MovieDetailsActivity
 import com.fernandocejas.sample.features.movies.MovieView
 import com.fernandocejas.sample.features.movies.MoviesActivity
@@ -35,16 +33,11 @@ import javax.inject.Singleton
 
 @Singleton
 class Navigator
-@Inject constructor(private val authenticator: Authenticator) {
+@Inject constructor() {
 
-    private fun showLogin(context: Context) =
-        context.startActivity(LoginActivity.callingIntent(context))
 
     fun showMain(context: Context) {
-        when (authenticator.userLoggedIn()) {
-            true -> showMovies(context)
-            false -> showLogin(context)
-        }
+        showMovies(context)
     }
 
     private fun showMovies(context: Context) =
